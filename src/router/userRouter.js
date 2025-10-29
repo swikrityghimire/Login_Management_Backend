@@ -23,7 +23,7 @@ userRouter.route("/update-password").patch(isAuthenticated, updatePassword);
 
 userRouter.route("/forgot-password").post(forgotPassword);
 
-userRouter.route("/reset-password").patch(isAuthenticated, resetPassword);
+userRouter.route("/reset-password").patch(resetPassword);
 
 userRouter.route("/:id")
 .get(isAuthenticated, authorized(["admin", "superadmin"]), readSpecificUser)
