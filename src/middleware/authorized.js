@@ -5,6 +5,13 @@ let authorized = (roles) => {
 
       let result = await User.findById(_id);
 
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: "User not found",
+        });
+      }
+
       let tokenRole = result.role;
       if (roles.includes(tokenRole)) {
         next();
