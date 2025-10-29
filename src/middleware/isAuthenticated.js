@@ -5,6 +5,13 @@ let isAuthenticated = async (req, res, next) => {
   try {
     // get token from postman
     let tokenString = req.headers.authorization;
+    if (!tokenString) {
+        return res.status(401).json({
+        success: false,
+        message: "Authorization token is missing.",
+      });
+    }
+    
     let tokenArray = tokenString.split(" ");
     let token = tokenArray[1];
     // verify token
